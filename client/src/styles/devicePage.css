@@ -1,0 +1,62 @@
+.device__flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-block: 2rem;
+}
+
+.device__img {
+	width: 30vw;
+	min-height: 80vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+.device__img img {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.device__desc {
+	width: 30vw;
+	min-height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.device__add {
+	width: 30vw;
+	min-height: 80vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+
+.device__add .device__price {
+	width: calc(var(--index) * 10);
+	height: calc(var(--index) * 12);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #000;
+	color: #fff;
+	border-radius: 10px;
+	position: relative;
+}
+
+.device__add .device__price span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: calc((var(--index) * 2));
+	font-weight: 200;
+}
+
+.device__add .device__price button {
+	position: absolute;
+}

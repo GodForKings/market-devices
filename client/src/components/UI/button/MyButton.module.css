@@ -1,0 +1,18 @@
+.myButton {
+	padding: 5px 15px;
+	color: #fff;
+	background: transparent;
+	border: 1px solid #fff;
+	transition: all 0.2s ease;
+	border-radius: 4px;
+	text-transform: uppercase;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.myButton:hover {
+	background-color: #fff;
+	border: 1px solid #fff;
+	color: #454237;
+}

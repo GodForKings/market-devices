@@ -1,0 +1,39 @@
+.brandBar {
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 10vh;
+	overflow: auto;
+}
+
+.brandBar__item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem;
+	padding: 1rem;
+	text-transform: uppercase;
+	background-color: var(--black-sh);
+	border-radius: 10px;
+	transition: all 1s;
+}
+
+.active {
+	background: var(--based-white);
+	color: #000;
+}
+
+@media (hover: none) {
+	.brandBar__item:active {
+		background: var(--based-white);
+		color: #000;
+		transition: all 0.1s;
+	}
+}
+
+@media (hover: hover) {
+	.brandBar__item:hover {
+		background: var(--based-white);
+		color: #000;
+		transition: all 0.1s;
+	}
+}
