@@ -45,12 +45,18 @@ const CreateDevice = observer(({ showDevice, setShowDevice }) => {
 		setFile(null)
 		setInfo([])
 		setShowDevice()
+		device.setSelectedType({})
+		device.setSelectedBrand({})
+	}
+
+	const checkProperty = (element, array) => {
+		return array.includes(element)
 	}
 
 	const addDevice = () => {
 		if (
-			device.selectedBrand &&
-			device.selectedType &&
+			checkProperty(device.selectedBrand, device.brands) &&
+			checkProperty(device.selectedType, device.types) &&
 			file &&
 			price > 1 &&
 			name
@@ -110,6 +116,7 @@ const CreateDevice = observer(({ showDevice, setShowDevice }) => {
 					<input
 						type='number'
 						value={price}
+						placeholder='Введите стоимость'
 						step={500}
 						onChange={e => {
 							setPrice(Number(e.target.value))

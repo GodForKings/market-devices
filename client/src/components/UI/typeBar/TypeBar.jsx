@@ -19,6 +19,7 @@ const TypeBar = observer(() => {
 					key={type.id}
 					onClick={() => {
 						device.setSelectedType(type)
+						device.setTargetPage(1)
 						console.log('rerender')
 					}}
 				>

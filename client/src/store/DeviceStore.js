@@ -2,12 +2,14 @@ import { computed, makeAutoObservable } from 'mobx'
 
 export default class DeviceStore {
 	constructor() {
-		this._types = []
-		this._brands = []
-		this._devices = []
-		this._selectedType = {}
-		this._selectedBrand = {}
-
+		this._types = [] //Типы предметов
+		this._brands = [] //Бренды предметов
+		this._devices = [] //Все девайсы
+		this._selectedType = {} //Выбранный Тип
+		this._selectedBrand = {} // Выбранный Бренд
+		this._targetPage = 1 //Текущая страница
+		this._totalCount = 0 //Количество товаров по запросу
+		this._limit = 5 //Количество товаров на одной странице
 		makeAutoObservable(this)
 	}
 	//action
@@ -30,6 +32,19 @@ export default class DeviceStore {
 	setSelectedBrand(brand) {
 		this._selectedBrand = brand
 	}
+
+	setTargetPage(targetPage) {
+		this._targetPage = targetPage
+	}
+
+	setTotalCount(totalCount) {
+		this._totalCount = totalCount
+	}
+
+	setLimit(limit) {
+		this._limit = limit
+	}
+
 	//computed
 	get types() {
 		return this._types
@@ -49,5 +64,17 @@ export default class DeviceStore {
 
 	get selectedBrand() {
 		return this._selectedBrand
+	}
+
+	get targetPage() {
+		return this._targetPage
+	}
+
+	get totalCount() {
+		return this._totalCount
+	}
+
+	get limit() {
+		return this._limit
 	}
 }

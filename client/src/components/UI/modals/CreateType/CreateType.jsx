@@ -27,7 +27,7 @@ const CreateBrand = ({ showType, setShowType }) => {
 				className={classes.createType__Content}
 				onClick={e => e.stopPropagation()} // Отключаем всплытие события
 			>
-				<h2 className={classes.CreateType__title}>Добавьте Тип</h2>
+				<h2 className={classes.createType__title}>Добавьте Тип</h2>
 				<form className={classes.createType__form}>
 					<input
 						type='text'

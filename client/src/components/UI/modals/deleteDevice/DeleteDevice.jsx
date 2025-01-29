@@ -8,22 +8,30 @@ import { fetchDevices, deleteDevice } from '../../../../http/deviceAPI'
 
 const DeleteDevice = observer(({ showKill, setShowKill }) => {
 	const { device } = useContext(Context)
-	const [targetDevice, setTargetDevice] = useState({})
+	const [targetDevice, setTargetDevice] = useState(false)
+	const [title, setTitle] = useState(
+		'Выберите устройства из списка для удаления'
+	)
+
+	const dropForm = () => {
+		setShowKill()
+		setTargetDevice(false)
+		setTitle('Выберите устройства из списка для удаления')
+	}
 
 	const destroyed = () => {
-		if (typeof targetDevice === 'object')
+		if (targetDevice)
 			deleteDevice(targetDevice.id).then(data => {
-				console.log(`${targetDevice.name} удален`)
-				setShowKill()
+				device.devices.filter(item => item.id !== targetDevice.id)
+				dropForm()
 			})
 		else {
-			console.log(targetDevice)
+			setTitle('Некорректно')
 		}
 	}
 	useEffect(() => {
 		fetchDevices().then(data => device.setDevices(data.rows))
 	}, [])
-	console.log(device.devices)
 
 	const rootClasses = showKill
 		? `${classes.deleteDevice} ${classes.active}`
@@ -31,17 +39,23 @@ const DeleteDevice = observer(({ showKill, setShowKill }) => {
 
 	return (
 		<div className={rootClasses}>
-			<Select
-				props={device.devices}
-				onChange={e => {
-					setTargetDevice(
-						device.devices.find(item => item.name === e.target.value)
-					)
-				}}
-			>
-				Выберите устройство для удаления
-			</Select>
-			<MyButton onClick={destroyed}>Удалить</MyButton>
+			<div className={classes.info}>
+				<h3 className={classes.info__title}>{title}</h3>
+				<Select
+					props={device.devices}
+					onChange={e => {
+						setTargetDevice(
+							device.devices.find(item => item.name === e.target.value)
+						)
+					}}
+				>
+					Девайсы
+				</Select>
+				<div className={classes.info__btn}>
+					<MyButton onClick={destroyed}>Удалить</MyButton>
+					<MyButton onClick={dropForm}>закрыть</MyButton>
+				</div>
+			</div>
 		</div>
 	)
 })

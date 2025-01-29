@@ -19,6 +19,7 @@ const BrandBar = observer(() => {
 					key={brand.id}
 					onClick={() => {
 						device.setSelectedBrand(brand)
+						device.setTargetPage(1)
 					}}
 				>
 					{brand.name}
