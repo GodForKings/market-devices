@@ -13,10 +13,11 @@ import classes from './NavBar.module.css'
 import logo from './static/logo.png'
 import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
+import Cart from './cart/Cart'
 
 const NavBar = observer(() => {
 	const navigate = useNavigate()
-	const { user } = useContext(Context)
+	const { user, device } = useContext(Context)
 
 	const logOut = () => {
 		user.setUser({})
@@ -26,7 +27,13 @@ const NavBar = observer(() => {
 	return (
 		<header className={classes.nav}>
 			<div>
-				<Link to={SHOP_ROUTE}>
+				<Link
+					to={SHOP_ROUTE}
+					onClick={() => {
+						device.setSelectedType({})
+						device.setSelectedBrand({})
+					}}
+				>
 					<img src={logo} alt='logo' />
 				</Link>
 			</div>
@@ -55,6 +62,7 @@ const NavBar = observer(() => {
 					</li>
 				</ul>
 			)}
+			<Cart></Cart>
 		</header>
 	)
 })

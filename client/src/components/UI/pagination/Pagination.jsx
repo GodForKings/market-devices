@@ -22,33 +22,34 @@ const Pagination = observer(() => {
 		}
 	}
 
-	return (
-		<ul className={style.pagination}>
-			<li className={style.item} onClick={prev}>
-				<a className={style.pagination__newer} href='#'>
-					PREV
-				</a>
-			</li>
-			{pages.map(page => (
-				<li
-					className={
-						page === device.targetPage
-							? `${style.item} ${style.item__active}`
-							: `${style.item}`
-					}
-					key={page}
-					onClick={() => device.setTargetPage(page)}
-				>
-					<a href='#'>{page}</a>
+	if (pagesCount > 1)
+		return (
+			<ul className={style.pagination}>
+				<li className={style.item} onClick={prev}>
+					<a className={style.pagination__newer} href='#'>
+						PREV
+					</a>
 				</li>
-			))}
-			<li className={style.item} onClick={next}>
-				<a className={style.pagination__older} href='#'>
-					NEXT
-				</a>
-			</li>
-		</ul>
-	)
+				{pages.map(page => (
+					<li
+						className={
+							page === device.targetPage
+								? `${style.item} ${style.item__active}`
+								: `${style.item}`
+						}
+						key={page}
+						onClick={() => device.setTargetPage(page)}
+					>
+						<a href='#'>{page}</a>
+					</li>
+				))}
+				<li className={style.item} onClick={next}>
+					<a className={style.pagination__older} href='#'>
+						NEXT
+					</a>
+				</li>
+			</ul>
+		)
 })
 
 export default Pagination

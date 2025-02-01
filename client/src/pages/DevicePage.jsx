@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../styles/devicePage.css'
 import MyButton from '../components/UI/button/MyButton'
 import { useParams } from 'react-router-dom'
 import { fetchSoloDevice } from '../http/deviceAPI'
+import { Context } from '..'
+import { observer } from 'mobx-react-lite'
 
 const DevicePage = () => {
+	const { basket } = useContext(Context)
 	const [device, setDevice] = useState({ info: [] })
 	const { id } = useParams()
 	useEffect(() => {
 		fetchSoloDevice(id).then(data => setDevice(data))
 	}, [])
 	const imgDevice = `${process.env.REACT_APP_API_URL}${device.img}`
+	const deviceInCart = () => {
+		if (!basket.cart.some(item => item.id === device.id)) {
+			basket.setCounter(basket.counter + 1)
+			basket.setCart(device)
+			console.log(basket.cart)
+		}
+	}
+
 	return (
 		<div className='body__container'>
 			<div className='device__flex'>
@@ -33,7 +44,7 @@ const DevicePage = () => {
 					<div className='device__price'>
 						<span>{device.price}₽</span>
 					</div>
-					<MyButton>Add to Basket</MyButton>
+					<MyButton onClick={deviceInCart}>Add to Basket</MyButton>
 				</div>
 			</div>
 		</div>

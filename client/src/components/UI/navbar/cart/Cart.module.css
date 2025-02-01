@@ -1,0 +1,19 @@
+.cart {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	position: relative;
+}
+
+.counter {
+	position: absolute;
+	inset: 10% 0 0 60%;
+	height: 40px;
+	width: 40px;
+	background: #454237;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.3rem;
+}
