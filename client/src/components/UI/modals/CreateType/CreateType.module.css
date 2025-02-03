@@ -3,6 +3,7 @@
 	inset: 0 0 0 0;
 	display: none;
 	background: rgba(0, 0, 0, 0.9);
+	z-index: 10;
 }
 
 .createType__Content {

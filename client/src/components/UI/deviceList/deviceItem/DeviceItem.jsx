@@ -1,9 +1,13 @@
-import React, { memo } from 'react'
+import React, { memo, useContext } from 'react'
 import classes from './DeviceItem.module.css'
 import { useNavigate } from 'react-router-dom'
 import { DEVICE_ROUTE } from '../../../../utils/consts'
+import MyButton from '../../button/MyButton'
+import { Context } from '../../../..'
+import addDeviceToCart from '../../../../utils/addDeviceToCart'
 
 const DeviceItem = memo(({ device }) => {
+	const { basket } = useContext(Context)
 	const navigate = useNavigate()
 	const altCard = [classes.item]
 	switch (device.id % 4) {
@@ -34,7 +38,15 @@ const DeviceItem = memo(({ device }) => {
 				<div className={classes.content__box}>
 					<title className={classes.card__title}>{device.name}</title>
 					<span className={classes.card__content}>{device.price}</span>
-					<span className={classes.rating}>{device.rating}</span>
+					<span className={classes.rating}>{device.rating}/5</span>
+					<MyButton
+						onClick={e => {
+							e.stopPropagation()
+							addDeviceToCart(basket, device)
+						}}
+					>
+						+
+					</MyButton>
 				</div>
 			</div>
 		</div>

@@ -52,7 +52,7 @@ const DeleteDevice = observer(({ showKill, setShowKill }) => {
 					Девайсы
 				</Select>
 				<div className={classes.info__btn}>
-					<MyButton onClick={destroyed}>Удалить</MyButton>
+					<MyButton onClick={destroyed}>удалить</MyButton>
 					<MyButton onClick={dropForm}>закрыть</MyButton>
 				</div>
 			</div>

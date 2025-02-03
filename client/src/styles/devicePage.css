@@ -1,35 +1,38 @@
 .device__flex {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-block: 2rem;
+	padding-block: 3rem;
+	height: calc(var(--index) * 25);
 }
 
 .device__img {
-	width: 30vw;
-	min-height: 80vh;
+	height: 100%;
+	max-width: 40vw;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
 }
 .device__img img {
-	width: 100%;
-	border-radius: 10px;
+	width: 90%;
+	border-radius: 20px;
 }
 
-.device__desc {
-	width: 30vw;
-	min-height: 80vh;
+.device__name {
+	height: 100%;
+	width: 20vw;
 	display: flex;
-	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	flex-direction: column;
+}
+
+.device__title {
 }
 
 .device__add {
-	width: 30vw;
-	min-height: 80vh;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -59,4 +62,5 @@
 
 .device__add .device__price button {
 	position: absolute;
+	bottom: 15%;
 }

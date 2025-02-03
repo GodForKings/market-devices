@@ -11,7 +11,7 @@
 header {
 	display: flex;
 	padding-inline: 10vw;
-	overflow-inline: hidden;
+	overflow-y: auto;
 }
 
 header div {

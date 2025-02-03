@@ -9,7 +9,7 @@ export default class DeviceStore {
 		this._selectedBrand = {} // Выбранный Бренд
 		this._targetPage = 1 //Текущая страница
 		this._totalCount = 0 //Количество товаров по запросу
-		this._limit = 5 //Количество товаров на одной странице
+		this._limit = 6 //Количество товаров на одной странице
 		makeAutoObservable(this)
 	}
 	//action

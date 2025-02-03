@@ -1,10 +1,12 @@
 const { Device, DeviceInfo } = require('../models/models')
 const uuid = require('uuid')
 const path = require('path')
+const fs = require('fs')
 const ApiError = require('../error/ApiError')
 const { type } = require('os')
 const { where } = require('sequelize')
 const { off } = require('process')
+const { error } = require('console')
 
 class DeviceController {
 	// Создать Девайс в БД
@@ -13,7 +15,7 @@ class DeviceController {
 			let { name, price, brandId, typeId } = req.body
 			let { info } = req.body
 			const { img } = req.files
-			let fileName = uuid.v4() + '.jpg'
+			let fileName = uuid.v4() + '.png'
 			img.mv(path.resolve(__dirname, '..', 'static', fileName))
 
 			const device = await Device.create({
@@ -46,11 +48,23 @@ class DeviceController {
 	//Удалить устройство по id
 	async deleteDevice(req, res, next) {
 		try {
-			let { id } = req.params
-			const device = await Device.destroy({
+			const { id } = req.params
+			const device = await Device.findOne({
 				where: { id },
 			})
-			return res.json(device)
+			if (!device) return next(ApiError.badRequest(error.message))
+			const imagePath = path.resolve(__dirname, '..', 'static', device.img)
+			fs.unlink(imagePath, error => {
+				if (error) return next(ApiError.badRequest(error.message))
+			})
+			//Удаляем из бд связанный массив характеристик по Id-устройства
+			await DeviceInfo.destroy({
+				where: { deviceId: id },
+			})
+			await Device.destroy({
+				where: { id },
+			})
+			return res.json({ message: 'Устройство удалено' })
 		} catch (error) {
 			next(ApiError.badRequest(error.message))
 		}
