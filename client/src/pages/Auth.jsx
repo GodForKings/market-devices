@@ -37,6 +37,7 @@ const Auth = observer(() => {
 					<h2>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
 					<form className='auth__card__form'>
 						<input
+							required
 							className='auth__card__input'
 							type='email'
 							placeholder='Введите ваш email...'
@@ -46,6 +47,7 @@ const Auth = observer(() => {
 							}}
 						/>
 						<input
+							required
 							className='auth__card__input'
 							type='password'
 							placeholder='Введите ваш пароль...'

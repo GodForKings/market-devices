@@ -12,13 +12,13 @@
 	height: 100%;
 	background-position: 10% 0%;
 	background-size: cover;
-	transition: all 0.5s ease-in-out;
+	transition: all 0.2s ease-in-out;
 	border-radius: 10px;
 }
 
 .card:hover {
 	background-position: 80% 20%;
-	transform: rotate3d(2, 1, 0, 30deg);
+	transform: rotate3d(1, 1, 0, 30deg);
 }
 
 .content__box {
@@ -26,7 +26,7 @@
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.811);
 	border-radius: 0px 0px 10px 10px;
-	box-shadow: rgba(0, 115, 255, 0.925) 0px 20px 50px -25px;
+	box-shadow: 0px 20px 50px -5px rgba(0, 115, 255, 0.925);
 	transition: all 0.4s ease-in-out;
 	padding: 50px 25px 25px 25px;
 	transform-style: preserve-3d;

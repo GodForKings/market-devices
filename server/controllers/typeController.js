@@ -21,6 +21,14 @@ class TypeController {
 			next(ApiError.badRequest(error.message))
 		}
 	}
+	//Получить Один Тип
+	async getOne(req, res) {
+		const { id } = req.params
+		const type = await Type.findOne({
+			where: { id },
+		})
+		return res.json(type)
+	}
 
 	//Удалить Тип
 	async deleteType(req, res) {

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from '../../..'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
 	ADMIN_ROUTE,
 	BASKET_ROUTE,
@@ -17,6 +17,8 @@ import Cart from './cart/Cart'
 
 const NavBar = observer(() => {
 	const navigate = useNavigate()
+	const location = useLocation()
+	console.log(location)
 	const { user, device } = useContext(Context)
 
 	const logOut = () => {
@@ -41,10 +43,24 @@ const NavBar = observer(() => {
 			{user.isAuth ? (
 				<ul>
 					<li>
-						<Link to={ADMIN_ROUTE}>Админка</Link>
+						<Link
+							to={ADMIN_ROUTE}
+							className={
+								location.pathname === ADMIN_ROUTE ? classes.active : undefined
+							}
+						>
+							Админка
+						</Link>
 					</li>
 					<li>
-						<Link to={SHOP_ROUTE}>Главная</Link>
+						<Link
+							to={SHOP_ROUTE}
+							className={
+								location.pathname === SHOP_ROUTE ? classes.active : undefined
+							}
+						>
+							Главная
+						</Link>
 					</li>
 					<li>
 						<Link to={LOGIN_ROUTE} onClick={logOut}>
@@ -58,7 +74,14 @@ const NavBar = observer(() => {
 						<Link to={LOGIN_ROUTE}>Авторизация</Link>
 					</li>
 					<li>
-						<Link to={SHOP_ROUTE}>Главная</Link>
+						<Link
+							to={SHOP_ROUTE}
+							className={
+								location.pathname === SHOP_ROUTE ? classes.active : undefined
+							}
+						>
+							Главная
+						</Link>
 					</li>
 				</ul>
 			)}

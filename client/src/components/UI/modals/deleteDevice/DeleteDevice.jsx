@@ -26,7 +26,7 @@ const DeleteDevice = observer(({ showKill, setShowKill }) => {
 				dropForm()
 			})
 		else {
-			setTitle('Некорректно')
+			setTitle('Выбран некорректный девайс')
 		}
 	}
 	useEffect(() => {

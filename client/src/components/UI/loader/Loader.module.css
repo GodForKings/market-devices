@@ -1,14 +1,9 @@
-bodY {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 .center {
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #000;
+	background: #000000;
 }
 .wave {
 	width: 5px;

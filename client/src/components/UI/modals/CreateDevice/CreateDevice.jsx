@@ -9,6 +9,7 @@ import {
 	createDevice,
 } from '../../../../http/deviceAPI'
 import { observer } from 'mobx-react-lite'
+import Loader from '../../loader/Loader'
 
 const CreateDevice = observer(({ showDevice, setShowDevice }) => {
 	const { device } = useContext(Context)
@@ -16,9 +17,12 @@ const CreateDevice = observer(({ showDevice, setShowDevice }) => {
 	const [price, setPrice] = useState(0) //состояние цены
 	const [file, setFile] = useState(null) //для файла
 	const [info, setInfo] = useState([]) // состояние для доп характеристик
+	const [loading, setLoading] = useState(true) // состояние отгрузки
+
 	useEffect(() => {
 		fetchTypes().then(data => device.setTypes(data))
 		fetchBrands().then(data => device.setBrands(data))
+		setLoading(false)
 	}, [])
 	const rootClasses = showDevice
 		? [classes.createDevice, classes.active]
@@ -68,13 +72,22 @@ const CreateDevice = observer(({ showDevice, setShowDevice }) => {
 			formData.append('typeId', device.selectedType.id)
 			formData.append('img', file)
 			formData.append('info', JSON.stringify(info))
-			createDevice(formData).then(data => {
-				dropForm()
-			})
+			setLoading(true)
+			createDevice(formData)
+				.then(data => {
+					dropForm()
+					setLoading(false)
+				})
+				.catch(error =>
+					alert(
+						`Возникла ошибка при добавлении устройства ${error.response.data.message}`
+					)
+				)
 		} else {
 			alert('Проверьте корректность входных данных')
 		}
 	}
+	if (loading) return <Loader />
 	return (
 		<div className={rootClasses.join(' ')}>
 			<div
@@ -109,18 +122,14 @@ const CreateDevice = observer(({ showDevice, setShowDevice }) => {
 						type='text'
 						placeholder='Введите название устройства'
 						value={name}
-						onChange={e => {
-							setName(e.target.value)
-						}}
+						onChange={e => setName(e.target.value)}
 					/>
 					<input
 						type='number'
 						value={price}
 						placeholder='Введите стоимость'
 						step={500}
-						onChange={e => {
-							setPrice(Number(e.target.value))
-						}}
+						onChange={e => setPrice(Number(e.target.value))}
 					/>
 					<input type='file' onChange={loadFile} />
 					<MyButton

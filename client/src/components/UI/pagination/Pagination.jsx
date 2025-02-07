@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import style from './Pagination.module.css'
 import { Context } from '../../..'
 import { observer } from 'mobx-react-lite'

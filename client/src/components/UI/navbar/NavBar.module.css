@@ -33,36 +33,29 @@ header ul {
 	align-items: center;
 	flex-wrap: nowrap;
 	margin-right: calc(var(--index));
-}
-
-header ul li {
-	text-transform: uppercase;
-	transition: all 0.1s ease-in;
-	border: solid 2px #fff;
-}
-
-header ul li:first-child {
-	border-radius: 10px 0 0 10px;
-}
-
-header ul li:last-child {
-	border-radius: 0 10px 10px 0;
-}
-
-header ul li:hover {
-	background-color: #454237;
-	border: solid 2px #454237;
-}
-header ul {
 	cursor: default;
 }
-
 header ul li a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 3.4rem;
+	height: 4rem;
 	width: 8rem;
 	font-size: 1rem;
+	border-radius: 10px;
 	cursor: pointer;
+	text-transform: uppercase;
+	transition: all 0.1s ease-in;
+}
+
+header ul li a:hover {
+	background: #fff;
+	color: #000;
+	border-radius: 10px;
+}
+
+.active {
+	background: #fff;
+	color: #000;
+	border-radius: 10px;
 }

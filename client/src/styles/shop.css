@@ -23,7 +23,6 @@
 	inset: 0;
 	background: url('./static/bg-dr.png') no-repeat center center;
 	background-size: contain;
-	overflow: hidden;
 }
 
 .shop__assortment {

@@ -13,28 +13,24 @@ const App = observer(() => {
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		setTimeout(() => {
-			if (localStorage.getItem('token')) {
-				check()
-					.then(data => {
-						user.setUser(data)
-						user.setIsAuth(true)
-					})
-					.catch(function (error) {
-						console.log(error)
-					})
-					.finally(() => {
-						setLoading(false)
-					})
-			} else {
-				setLoading(false)
-			}
-		}, 1000)
+		if (localStorage.getItem('token')) {
+			check()
+				.then(data => {
+					user.setUser(data)
+					user.setIsAuth(true)
+				})
+				.catch(function (error) {
+					console.log(error)
+				})
+				.finally(() => {
+					setLoading(false)
+				})
+		} else {
+			setLoading(false)
+		}
 	}, [])
 
-	if (loading) {
-		return <Loader />
-	}
+	if (loading) return <Loader />
 
 	return (
 		<BrowserRouter>
