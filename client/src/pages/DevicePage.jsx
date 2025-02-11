@@ -6,7 +6,7 @@ import { fetchBrand, fetchSoloDevice, fetchType } from '../http/deviceAPI'
 import { Context } from '..'
 import { observer } from 'mobx-react-lite'
 import { BASKET_ROUTE, SHOP_ROUTE } from '../utils/consts'
-import addDeviceToCart from '../utils/addDeviceToCart'
+import addDeviceToCart from '../utils/DeviceToCart'
 import DeviceBaseInfo from '../components/UI/devicePageInfo/DeviceBaseInfo'
 import Loader from '../components/UI/loader/Loader'
 
@@ -56,16 +56,21 @@ const DevicePage = observer(() => {
 					<div className='device__price'>
 						<span>{device.price}₽</span>
 						{deviceInCart ? (
-							<MyButton
-								onClick={() => {
-									navigate(BASKET_ROUTE)
-								}}
-							>
-								к оформлению
-							</MyButton>
+							<div className='device__redirect'>
+								<MyButton onClick={() => basket.deleteDeviceInCart(device)}>
+									убрать
+								</MyButton>
+								<MyButton
+									onClick={() => {
+										navigate(BASKET_ROUTE)
+									}}
+								>
+									оформить
+								</MyButton>
+							</div>
 						) : (
 							<MyButton onClick={() => addDeviceToCart(basket, device)}>
-								в корзину
+								добавить в корзину
 							</MyButton>
 						)}
 					</div>
@@ -75,7 +80,7 @@ const DevicePage = observer(() => {
 				<h3>Характеристика товара</h3>
 				{device.info.map(item => (
 					<dl key={item.id} className='device__info-block'>
-						<dt>{item.title} :</dt>
+						<dt>{item.title}:</dt>
 						<dd>{item.description}</dd>
 					</dl>
 				))}

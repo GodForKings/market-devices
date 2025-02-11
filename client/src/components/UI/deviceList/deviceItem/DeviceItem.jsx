@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { DEVICE_ROUTE } from '../../../../utils/consts'
 import MyButton from '../../button/MyButton'
 import { Context } from '../../../..'
-import addDeviceToCart from '../../../../utils/addDeviceToCart'
+import addDeviceToCart from '../../../../utils/DeviceToCart'
 
 const DeviceItem = memo(({ device }) => {
 	const { basket } = useContext(Context)
@@ -37,7 +37,7 @@ const DeviceItem = memo(({ device }) => {
 			>
 				<div className={classes.content__box}>
 					<title className={classes.card__title}>{device.name}</title>
-					<span className={classes.card__content}>{device.price}</span>
+					<span className={classes.card__content}>{device.price}₽</span>
 					<span className={classes.rating}>{device.rating}/5</span>
 					<MyButton
 						onClick={e => {

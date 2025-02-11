@@ -34,6 +34,7 @@ const NavBar = observer(() => {
 					onClick={() => {
 						device.setSelectedType({})
 						device.setSelectedBrand({})
+						device.setTargetPage(1)
 					}}
 				>
 					<img src={logo} alt='logo' />

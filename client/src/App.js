@@ -9,10 +9,13 @@ import Loader from './components/UI/loader/Loader'
 import { check } from './http/userAPI'
 
 const App = observer(() => {
-	const { user } = useContext(Context)
+	const { user, basket } = useContext(Context)
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
+		if (localStorage.getItem('cart')) {
+			basket.preLoading(JSON.parse(localStorage.getItem('cart')))
+		}
 		if (localStorage.getItem('token')) {
 			check()
 				.then(data => {

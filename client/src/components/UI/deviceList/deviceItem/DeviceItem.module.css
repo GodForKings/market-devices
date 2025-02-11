@@ -39,19 +39,20 @@
 	align-items: center;
 	justify-content: center;
 	color: #fff;
-	font-size: 25px;
-	font-weight: 900;
-	transition: all 0.5s ease-in-out;
+	font-size: 1.5rem;
+	font-weight: 200;
+	transition: all 0.3s ease-in-out;
 	transform: translate3d(0px, 0px, 20px);
+	margin-top: 1rem;
 }
 .card__title:hover {
 	transform: translate3d(0px, 0px, 50px);
 }
 
 .card__content {
-	margin-top: 3rem;
-	font-size: 1.5rem;
-	color: rgb(185, 185, 185);
+	margin-top: calc(var(--index));
+	font-size: 1.7rem;
+	color: rgb(0, 102, 255);
 	transition: all 0.5s ease-in-out;
 	transform: translate3d(0px, 0px, 20px);
 	display: flex;
@@ -68,7 +69,7 @@
 	z-index: 1;
 	height: 60px;
 	width: 60px;
-	background-color: #000;
+	background-color: var(--black-sh);
 	border-radius: 10px;
 	padding: 10px;
 	color: rgb(0, 136, 255);
@@ -82,7 +83,7 @@
 .content__box button {
 	position: absolute;
 	bottom: 20%;
-	right: 10%;
+	right: 15%;
 }
 
 .card2 {

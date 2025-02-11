@@ -32,7 +32,7 @@ header ul {
 	justify-content: flex-end;
 	align-items: center;
 	flex-wrap: nowrap;
-	margin-right: calc(var(--index));
+	margin-right: calc(2 * var(--index));
 	cursor: default;
 }
 header ul li a {

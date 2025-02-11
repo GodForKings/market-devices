@@ -1,0 +1,12 @@
+.content__box {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.basket__container {
+	margin: 5vh 10vw;
+	width: 80vw;
+	height: 100%;
+}
