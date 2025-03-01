@@ -72,48 +72,56 @@ class DeviceController {
 
 	// Получить все по типу или бренду
 
-	async getAll(req, res) {
-		let { brandId, typeId, page, limit } = req.query
-		page = page || 1
-		limit = limit || 50
-		let offset = page * limit - limit
-		let devices
+	async getAll(req, res, next) {
+		try {
+			let { brandId, typeId, page, limit } = req.query
+			page = page || 1
+			limit = limit || 50
+			let offset = page * limit - limit
+			let devices
 
-		if (!brandId && !typeId) {
-			devices = await Device.findAndCountAll({ limit, offset })
+			if (!brandId && !typeId) {
+				devices = await Device.findAndCountAll({ limit, offset })
+			}
+			if (brandId && !typeId) {
+				devices = await Device.findAndCountAll({
+					where: { brandId },
+					limit,
+					offset,
+				})
+			}
+			if (!brandId && typeId) {
+				devices = await Device.findAndCountAll({
+					where: { typeId },
+					limit,
+					offset,
+				})
+			}
+			if (brandId && typeId) {
+				devices = await Device.findAndCountAll({
+					where: { typeId, brandId },
+					limit,
+					offset,
+				})
+			}
+			return res.json(devices)
+		} catch (error) {
+			next(ApiError.badRequest(error.message))
 		}
-		if (brandId && !typeId) {
-			devices = await Device.findAndCountAll({
-				where: { brandId },
-				limit,
-				offset,
-			})
-		}
-		if (!brandId && typeId) {
-			devices = await Device.findAndCountAll({
-				where: { typeId },
-				limit,
-				offset,
-			})
-		}
-		if (brandId && typeId) {
-			devices = await Device.findAndCountAll({
-				where: { typeId, brandId },
-				limit,
-				offset,
-			})
-		}
-		return res.json(devices)
 	}
 
 	// Получить Один по ID
-	async getOne(req, res) {
-		const { id } = req.params
-		const device = await Device.findOne({
-			where: { id },
-			include: [{ model: DeviceInfo, as: 'info' }],
-		})
-		return res.json(device)
+	async getOne(req, res, next) {
+		try {
+			const { id } = req.params
+			const device = await Device.findOne({
+				where: { id },
+				include: [{ model: DeviceInfo, as: 'info' }],
+			})
+			return res.json(device)
+		} catch (error) {
+			next(ApiError.badRequest(error.message))
+		}
 	}
 }
 

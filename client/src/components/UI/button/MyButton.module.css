@@ -1,10 +1,10 @@
 .myButton {
 	padding: 5px 15px;
-	color: #fff;
+	color: var(--based-white);
 	background: transparent;
-	border: 1px solid #fff;
+	border: 1px solid var(--based-white);
 	transition: all 0.2s ease;
-	border-radius: 4px;
+	border-radius: 15px;
 	text-transform: uppercase;
 	display: flex;
 	justify-content: center;
@@ -12,6 +12,6 @@
 }
 
 .myButton:hover {
-	background-color: #fff;
-	color: #454237;
+	background-color: var(--based-white);
+	color: var(--black-sh);
 }

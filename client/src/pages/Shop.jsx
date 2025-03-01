@@ -32,6 +32,7 @@ const Shop = observer(() => {
 			setLoader(false)
 		})
 	}, [device.targetPage, device.selectedType, device.selectedBrand])
+
 	if (loader) return <Loader />
 	return (
 		<div className='body__container shop__flex'>

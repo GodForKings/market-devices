@@ -25,11 +25,7 @@ const Admin = () => {
 				<strong className='admin__button__strong'>бренд</strong>
 				устройства
 			</MyButton>
-			<MyButton
-				onClick={() => {
-					setShowKill(true)
-				}}
-			>
+			<MyButton onClick={() => setShowKill(true)}>
 				Удалить <strong className='admin__button__strong'>устройство</strong>
 			</MyButton>
 

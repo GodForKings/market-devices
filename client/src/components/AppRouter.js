@@ -9,7 +9,7 @@ const AppRouter = observer(() => {
 	const { user } = useContext(Context)
 	return (
 		<Routes>
-			{user.isAuth &&
+			{user.user.role === 'ADMIN' &&
 				authRoutes.map(({ path, Component }) => (
 					<Route key={path} path={path} element={Component} exact></Route>
 				))}

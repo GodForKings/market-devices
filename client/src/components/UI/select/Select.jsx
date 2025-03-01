@@ -14,4 +14,4 @@ const Select = ({ children, props, onChange }) => {
 	)
 }
 
-export default Select
+export default React.memo(Select)

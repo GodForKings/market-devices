@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { Context } from '../../..'
 import { Link, useLocation } from 'react-router-dom'
 import {
@@ -14,12 +14,22 @@ import logo from './static/logo.png'
 import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 import Cart from './cart/Cart'
+import { gsap } from 'gsap'
 
 const NavBar = observer(() => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	console.log(location)
 	const { user, device } = useContext(Context)
+	const refNav = useRef(null)
+	useEffect(() => {
+		gsap.fromTo(
+			refNav.current,
+			{
+				y: '-100%',
+			},
+			{ y: 0, ease: 'power3.out', duration: 1 }
+		)
+	}, [])
 
 	const logOut = () => {
 		user.setUser({})
@@ -27,7 +37,7 @@ const NavBar = observer(() => {
 		localStorage.removeItem('token')
 	}
 	return (
-		<header className={classes.nav}>
+		<header className={classes.nav} ref={refNav}>
 			<div>
 				<Link
 					to={SHOP_ROUTE}
@@ -86,7 +96,7 @@ const NavBar = observer(() => {
 					</li>
 				</ul>
 			)}
-			<Cart></Cart>
+			<Cart />
 		</header>
 	)
 })

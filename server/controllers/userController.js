@@ -33,24 +33,32 @@ class UserController {
 
 	//Авторизация Пользователя
 	async login(req, res, next) {
-		const { email, password } = req.body
-		const user = await User.findOne({ where: { email } })
-		if (!user) {
-			return next(
-				ApiError.internal(`Пользователя с таким ${email} не существует`)
-			)
+		try {
+			const { email, password } = req.body
+			const user = await User.findOne({ where: { email } })
+			if (!user) {
+				return next(
+					ApiError.internal(`Пользователя с таким ${email} не существует`)
+				)
+			}
+			let comparePassword = bcrypt.compareSync(password, user.password)
+			if (!comparePassword) {
+				return next(ApiError.internal(`Указан неверный password`))
+			}
+			const token = generateJwt(user.id, user.email, user.role)
+			return res.json({ token })
+		} catch (error) {
+			return next(ApiError.badRequest(error.message))
 		}
-		let comparePassword = bcrypt.compareSync(password, user.password)
-		if (!comparePassword) {
-			return next(ApiError.internal(`Указан неверный password`))
-		}
-		const token = generateJwt(user.id, user.email, user.role)
-		return res.json({ token })
 	}
 
 	async check(req, res, next) {
-		const token = generateJwt(req.user.id, req.user.email, req.user.role)
-		return res.json({ token })
+		try {
+			const token = generateJwt(req.user.id, req.user.email, req.user.role)
+			return res.json({ token })
+		} catch (error) {
+			return next(ApiError.internal(error.message))
+		}
 	}
 }
 

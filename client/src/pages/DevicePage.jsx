@@ -6,9 +6,9 @@ import { fetchBrand, fetchSoloDevice, fetchType } from '../http/deviceAPI'
 import { Context } from '..'
 import { observer } from 'mobx-react-lite'
 import { BASKET_ROUTE, SHOP_ROUTE } from '../utils/consts'
-import addDeviceToCart from '../utils/DeviceToCart'
 import DeviceBaseInfo from '../components/UI/devicePageInfo/DeviceBaseInfo'
 import Loader from '../components/UI/loader/Loader'
+import DeviceBackground from '../components/UI/devicePageBg/DeviceBackground'
 
 const DevicePage = observer(() => {
 	const navigate = useNavigate()
@@ -42,8 +42,9 @@ const DevicePage = observer(() => {
 	if (loader) return <Loader />
 
 	return (
-		<div className='body__container'>
-			<div className='device__flex'>
+		<div className='device__container'>
+			<DeviceBackground />
+			<div className='body__container device__flex'>
 				<div className='device__img'>
 					<img src={imgDevice} alt='Изображение устройства'></img>
 				</div>
@@ -58,18 +59,18 @@ const DevicePage = observer(() => {
 						{deviceInCart ? (
 							<div className='device__redirect'>
 								<MyButton onClick={() => basket.deleteDeviceInCart(device)}>
-									убрать
+									убрать все
 								</MyButton>
 								<MyButton
 									onClick={() => {
 										navigate(BASKET_ROUTE)
 									}}
 								>
-									оформить
+									к заказу
 								</MyButton>
 							</div>
 						) : (
-							<MyButton onClick={() => addDeviceToCart(basket, device)}>
+							<MyButton onClick={() => basket.setCart(device)}>
 								добавить в корзину
 							</MyButton>
 						)}

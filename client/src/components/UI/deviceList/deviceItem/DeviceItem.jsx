@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { DEVICE_ROUTE } from '../../../../utils/consts'
 import MyButton from '../../button/MyButton'
 import { Context } from '../../../..'
-import addDeviceToCart from '../../../../utils/DeviceToCart'
 
 const DeviceItem = memo(({ device }) => {
 	const { basket } = useContext(Context)
@@ -42,7 +41,7 @@ const DeviceItem = memo(({ device }) => {
 					<MyButton
 						onClick={e => {
 							e.stopPropagation()
-							addDeviceToCart(basket, device)
+							basket.setCart(device)
 						}}
 					>
 						+

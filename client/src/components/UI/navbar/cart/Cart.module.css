@@ -7,13 +7,17 @@
 
 .counter {
 	position: absolute;
-	inset: 10% 0 0 60%;
+	inset: 40% 0 0 60%;
 	height: 40px;
 	width: 40px;
-	background: #454237;
-	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.8);
+	border-color: 3px solid #000;
+	color: #000;
+	border-radius: 40%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.3rem;
+	font-size: 2rem;
+	font-weight: 200;
+	box-shadow: var(--blackShadow);
 }

@@ -11,7 +11,7 @@ const Cart = observer(() => {
 	return (
 		<div className={classes.cart}>
 			<Link to={BASKET_ROUTE}>
-				<div className={classes.counter}>{basket.counter}</div>
+				<div className={classes.counter}>{basket.totalItems}</div>
 				<img src={cart} alt='cart-img'></img>
 			</Link>
 		</div>

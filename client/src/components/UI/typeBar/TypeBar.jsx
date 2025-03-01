@@ -1,13 +1,30 @@
 import { observer } from 'mobx-react-lite'
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { Context } from '../../..'
 import classes from './TypeBar.module.css'
+import { gsap } from 'gsap'
 
 const TypeBar = observer(() => {
+	const refBar = useRef(null)
+	const refItem = useRef(null)
 	const { device } = useContext(Context)
 	const typeClass = [classes.typeBar__item, classes.active]
+	useEffect(() => {
+		const animate = gsap.fromTo(
+			refBar.current,
+			{
+				x: '-30px',
+			},
+			{
+				x: '0px',
+				duration: 0.3,
+				ease: 'power3.inOut',
+			}
+		)
+		return () => animate.kill()
+	}, [])
 	return (
-		<ul className={classes.typeBar}>
+		<ul className={classes.typeBar} ref={refBar}>
 			{device.types.map(type => (
 				<li
 					className={
@@ -20,6 +37,7 @@ const TypeBar = observer(() => {
 						device.setSelectedType(type)
 						device.setTargetPage(1)
 					}}
+					ref={refItem}
 				>
 					{type.name}
 				</li>
